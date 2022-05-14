@@ -1,4 +1,4 @@
-import connection from '../database/connection';
+import connection from './connection';
 import { IProduct, IProductsModel } from '../interfaces/store.interface';
 
 export default class ProductModel implements IProductsModel {
