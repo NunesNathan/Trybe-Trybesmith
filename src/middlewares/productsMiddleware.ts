@@ -1,10 +1,10 @@
 import Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
-import { IVerifyBody } from '../interfaces/store.interface';
+import { IProductsMiddleware, IProductToCreate } from '../interfaces/store.interface';
 import IErrorHttp from './error/errorHttp';
 
-export default class VerifyBody implements IVerifyBody {
-  private createSchema: Joi.ObjectSchema;
+export default class ProductsMiddleware implements IProductsMiddleware {
+  private createSchema: Joi.ObjectSchema<IProductToCreate>;
 
   constructor() {
     this.createSchema = Joi.object({
