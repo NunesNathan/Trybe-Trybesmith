@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import ProductsService from '../services/productsService';
 import { IProductsController } from '../interfaces/store.interface';
-import VerifyBody from '../middlewares/verifyBody';
+import ProductsMiddleware from '../middlewares/productsMiddleware';
 
 class ProductsController implements IProductsController {
   constructor(private service = new ProductsService()) { }
@@ -20,12 +20,12 @@ class ProductsController implements IProductsController {
 }
 
 const product = new ProductsController();
-const verifyBody = new VerifyBody();
+const verifyBodyOn = new ProductsMiddleware();
 
 const productsController = {
   getAll: product.getAll,
   createProduct: [
-    verifyBody.create,
+    verifyBodyOn.create,
     product.create,
   ],
 };
