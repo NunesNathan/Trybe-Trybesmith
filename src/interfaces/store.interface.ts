@@ -29,15 +29,32 @@ export interface IUserToCreate {
   password: string;
 }
 
+export interface IOrderWithProducts {
+  id: number;
+  userId: number;
+  productsIds: number[];
+}
+
+export interface IOrder {
+  id: number;
+  userId: number;
+}
+
 // Model schemas
 export interface IProductsModel {
   getAll(): Promise<IProduct[]>;
   create(productToCreate: IProductToCreate): Promise<IProduct>;
+  getByOrderId(orderId: number): Promise<number>;
 }
 
 export interface IUsersModel {
   // getOne(user: IUserToCreate): Promise<IUser>;
   create(userToCreate: IUserToCreate): Promise<IUser>;
+}
+
+export interface IOrderModel {
+  getAll(): Promise<IOrder[]>;
+  // getOne(id: number): Promise<IOrder>;
 }
 
 // Controller schemas
@@ -50,6 +67,10 @@ export interface IUsersController {
   create(req: Request, res: Response): Promise<Response>;
 }
 
+export interface IOrdersController {
+  getAll(req: Request, res: Response): Promise<Response>;
+}
+
 // Service schemas
 export interface IProductsService {
   getAll(): Promise<IProduct[]>;
@@ -58,6 +79,10 @@ export interface IProductsService {
 
 export interface IUsersService {
   create(newUser: IUserToCreate): Promise<void>;
+}
+
+export interface IOrdersService {
+  getAll(): Promise<IOrderWithProducts[]>;
 }
 
 // Middleware schemas
